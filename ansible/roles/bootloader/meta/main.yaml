@@ -3,5 +3,5 @@ dependencies:
   - role: pacstrap
     vars:
       packages:
-        - syslinux
+        - refind-efi
       chroot: "{{ global_mount_point }}"

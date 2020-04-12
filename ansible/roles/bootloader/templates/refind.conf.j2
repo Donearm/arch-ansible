@@ -1,0 +1,5 @@
+"Boot with standard options" 	"root={{ root_uuid }} rw add_efi_memmap"
+"Boot to single-user mode"  	"root={{ root_uuid }} rw add_efi_memmap single"
+"Boot with minimal options"  	"ro root={{ root_uuid }}"
+"Boot with intel ucode"		"root={{ root_uuid }} rw add_efi_memmap initrd=/boot/intel-ucode.img"
+"Boot with all mitigations off" "root={{ root_uuid }} rw add_efi_memmap noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off initrd=/boot/intel-ucode.img"
