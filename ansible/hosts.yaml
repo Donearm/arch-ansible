@@ -1,4 +1,6 @@
 all:
     hosts:
-        192.168.99.104:
+        192.168.0.137:
+            ansible_user: root
+        127.0.0.1:
             ansible_user: root
