@@ -19,7 +19,6 @@ base_packages_list:
   - man-db
   - man-pages
   - mdadm
-  - nano
   - netctl
   - perl
   - sysfsutils
@@ -30,6 +29,6 @@ base_packages_list:
   # Additional tools needed to run Ansible and get network connectivity
   # after we reboot
   - sudo
-  - networkmanager
+  - wpa_supplicant
   - openssh
-  - python3
+  - python
