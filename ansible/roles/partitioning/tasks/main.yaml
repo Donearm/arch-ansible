@@ -1,25 +1,46 @@
 - name: Partition the target system
   tags: partitioning
   block:
-  - name: Create a MBR partition table and one partition
+  - name: Create an EFI system partition
     parted:
       device: "{{ global_device_node }}"
       state: present
       label: msdos
+      number: "{{ global_device_efi_number }}"
+      flags:
+        - esp
+
+  - name: Format the EFI system partition
+    filesystem:
+      dev:  "{{ global_device_node }}{{ global_device_efi_number }}"
+      fstype: vfat
+
+  - name: Mount the boot partition
+    mount:
+      state: mounted
+      src: "{{ global_device_node }}{{ global_device_efi_number }}"
+      path: "{{ global_efi_mount_point }}"
+      fstype: vfat
+      opts: rw,relatime,fmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
+
+  - name: Create a root partition
+    parted:
+      device: "{{ global_device_node }}"
+      state: present
+      label: Archlinux
       number: "{{ global_partition_number }}"
       flags:
-        - boot
-  
-  - name: Format the partition
+        - root
+
+  - name: Format the root partition
     filesystem:
       dev:  "{{ global_device_node }}{{ global_partition_number }}"
       fstype: ext4
-      opts: -O ^64bit
-  
+
   - name: Mount the root partition
     mount:
       state: mounted
       src: "{{ global_device_node }}{{ global_partition_number }}"
       path: "{{ global_mount_point }}"
       fstype: ext4
-      opts: rw,relatime
+      opts: rw,relatime,data=ordered
