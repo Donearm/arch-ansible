@@ -1,8 +1,8 @@
 xorg_packages:
   - xorg
-  - xorg-apps
-  - xorg-drivers
-  - xorg-apps
-  - xorg-fonts
+  - xorg-xbacklight
+  - xorg-xev
   - xorg-xinit
+  - xorg-xinput
+
 
