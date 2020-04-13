@@ -1,9 +1,8 @@
-- name: Enable services on installed system
+- name: Enable SSH on installed system
   command: arch-chroot {{ global_mount_point}}
     systemctl enable {{ item }}
   loop:
     - sshd
-    - NetworkManager
 
 - name: Create root's .ssh
   file:
