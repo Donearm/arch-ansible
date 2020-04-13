@@ -1,6 +1,6 @@
 {
 	"aururl": "https://aur.archlinux.org",
-	"buildDir": "$HOME/.cache/yay",
+	"buildDir": "/tmp/yaytmp-1000/",
 	"editor": "",
 	"editorflags": "",
 	"makepkgbin": "makepkg",
