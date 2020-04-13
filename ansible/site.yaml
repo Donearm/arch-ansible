@@ -29,11 +29,11 @@
     - role: custom_repos
     - role: users
     - role: locale
-    - role: proxy
-    - role: virtguest
-      tags: [virtguest]
-    - role: xfce_user_customizations
-      tags: [xfce]
+      #- role: proxy
+      #- role: virtguest
+      #tags: [virtguest]
+      #- role: xfce_user_customizations
+      #tags: [xfce]
     - role: yay_user_customizations
       tags: [yay]
     - role: ttf_fonts
