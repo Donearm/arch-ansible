@@ -1,14 +1,8 @@
 xutils_packages:       
-  - gvfs
-  - udisks2
-  - file-roller
-  - evince
-  - gnome-calculator
-  - gnome-keyring
-  - gvim
-  - network-manager-applet
-  - nm-connection-editor
+  - calibre
+  - dropbox
   - firefox
-  - filezilla
-  - x11-ssh-askpass
-  - pavucontrol
+  - gimp
+  - gpick
+  - gvim
+  - spotify
