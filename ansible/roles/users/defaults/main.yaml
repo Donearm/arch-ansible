@@ -7,4 +7,4 @@ users_info:
   gianluca:
     password: "abcd$1234_gianluca"
     is_admin: true # Optional item, true if missing
-    groups: [wheel, video, docker, adbusers]     # Optional item, empty list if missing
+    groups: [video, docker, adbusers]     # Optional item, empty list if missing
