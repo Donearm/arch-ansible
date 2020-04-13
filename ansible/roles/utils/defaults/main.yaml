@@ -1,8 +1,26 @@
 utils_packages:
+  - apulse
+  - acestream-launcher
+  - acpi
+  - cronie
+  - ctags
+  - docker-compose
+  - go
+  - hsetroot
+  - hugo
+  - instaloader
+  - intel-ucode
+  - iw
+  - jmtpfs
+  - logrotate
+  - make
+  - man-db
+  - man-pages
+  - mpc
+  - net-tools
   - ntfs-3g
   - p7zip
   - rsync
-  - hexer
-  - net-tools
-  - iotop
-  - pulseaudio-alsa
+  - scrot
+  - usbutils
+  - xbindkeys
