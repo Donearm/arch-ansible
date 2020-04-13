@@ -34,6 +34,8 @@
       #tags: [virtguest]
       #- role: xfce_user_customizations
       #tags: [xfce]
+    - role: mutt
+      tags: [mutt]
     - role: yay_user_customizations
       tags: [yay]
     - role: ttf_fonts

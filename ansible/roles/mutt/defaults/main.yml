@@ -1,0 +1,10 @@
+mg_user: "gianluca"
+mg_spoolfile: "~/Maildir/"
+mg_folder: "~/Maildir/"
+mg_record: "+.Sent/"
+mg_postponed: "+.Drafts/"
+mg_mbox: "~/Maildir/"
+mg_alternates: "^forod.g@gmail\\.com$ ^gianluca1181@yahoo\\.it$ ^fioregianluca@gmail\\.com$ ^puffosaltatore@gmail\\.com$ ^gianlucafiore@papersounds\\.eu$"
+mg_editor: "vim -c 'set tw=72 et' -c 'set fo=tcrq' -c 'set syntax=mail' -c ':0;/^To: ' -c 'set spell' -c 'redraw' -c 'set nobackup' -c 'set noswapfile' -c 'set nowritebackup'"
+mg_edit_headers: 'yes'
+mg_charset: "utf-8:iso-8859-1:iso-8859-15:us-ascii"

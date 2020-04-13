@@ -1,0 +1,10 @@
+- name: Install Mutt
+  pacman:
+    name: "mutt"
+
+- name: Copy Mutt configuration
+  template:
+    src: muttrc.j2
+    dest: "{{ global_mount_point }}/home/{{ mg_user }}/.muttrc"
+    owner: "{{ mg_user }}"
+    mode: 0600

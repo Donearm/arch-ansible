@@ -1,0 +1,293 @@
+# Note: $folder should be set _before_ any other path vars where `+' or `='
+# is used because paths are expanded when parsed
+#
+set folder="{{ mg_folder }}"		# where i keep my mailboxes
+set folder_format="%2C %t %N %f"
+
+set realname="{{ mg_name }}"
+set use_envelope_from=yes	# force same address in envelope as in From:
+set abort_unmodified=yes	# automatically abort replies if I don't change the message
+set alias_file=~/.mail_aliases	# where I keep my aliases
+set alias_format="%4n %2f %t %-10a   %r"
+set allow_8bit			# never do Q-P encoding on legal 8-bit chars
+#set arrow_cursor		# use -> instead of hiliting the whole line
+set sleep_time = 0		# make folders switch almost instantaneous
+# a regexp that specifies alternate addresses where you receive mail
+alternates {{ mg_alternates }}
+set attach_format="%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+set attach_split
+set date_format="%a %d %b, %Y at %H:%M:%S %Z"
+set ignore_list_reply_to=yes
+set imap_authenticators="gssapi:cram-md5:digest-md5:login" # authentication methods to try for imap authentication
+set imap_passive		# do not open new imap connections to check for new mail
+set imap_peek			# do not mark mail as read whenever fetching a message from the imap server. Might make closing mutt a tad slower
+set mask="!^\\.[^.]"	# filebrowser mask
+set ssl_usesystemcerts	# mutt will use CA certificates in the system-wide certificate store
+set send_charset="{{ mg_charset }}"
+#set ascii_chars		# use ASCII instead of ACS chars for threads
+#set askbcc
+#set askcc
+set attribution="On %d, %n wrote:"	# how to attribute replies
+set autoedit			# go to the editor right away when composing
+#set auto_tag			# always operate on tagged messages
+set charset="utf-8"	# character set for your terminal
+set noconfirmappend		# don't ask me if i want to append to mailboxes
+#set confirmcreate		# prompt when creating new files
+set copy=yes			# always save a copy of outgoing messages
+set delete=ask-yes			# purge deleted messages without asking
+set edit_headers="{{ mg_edit_headers }}"
+set editor="{{ mg_editor }}"
+set bounce=yes			# don't ask about bouncing messages, just do it
+#set fast_reply			# skip initial prompts when replying
+#set fcc_attach			# keep attachments in copies of sent messages?
+#set force_name			# fcc by recipient, create if mailbox doesn't exist
+set forward_decode		# weed and MIME decode forwaded messages
+set forward_format="[Fwd: %s]"	# subject to use when forwarding messages
+#set forward_quote		# quote the header and body of forward msgs
+#set index_format="%4C %Z %{%m/%d} [%2N] %-15.15F (%4c) %s"
+set index_format="%4C %Z %{%d/%m/%Y} %-15.15F (%4c) %s" # format of the index
+set hdrs			# include `my_hdr' lines in outgoing messages
+#set header			# include message header when replying
+set help			# show the help lines
+set history=20			# number of lines of history to remember
+set hostname="`hostname`"	# my DNS domain
+set include=ask-yes			# always include messages when replying
+set indent_string="> "		# how to quote replied text
+set mailcap_path="~/.mailcap:/usr/local/share/mailcap"
+set nomark_old			# i don't care about whether a message is old
+set mail_check=10		# how often to poll for new mail
+set mbox="{{ mg_folder }}"			# where to store read messages
+set mbox_type="maildir"
+set smart_wrap
+set wrapmargin=5
+#set menu_scroll		# no implicit next-page/prev-page
+#set metoo			# remove my address when replying
+set mime_forward		# use message/rfc822 type to forward messages
+set move=yes			# don't ask about moving messages, just do it
+#set pager=less			# some people prefer an external pager
+#set pager_context=3		# no. of lines of context to give when scrolling
+#set pager_format="-%S- %-20.20f %s"	# format of the pager status bar
+set pager_index_lines=6		# how many index lines to show in the pager
+#set pager_stop			# don't move to the next message on next-page
+set postpone=ask-yes
+set postponed="{{ mg_postponed }}"	# mailbox to store postponed messages in
+#set post_indent_string='---end quoted text---'
+set print=ask-no		# ask me if I really want to print messages
+set print_command=""	# how to print things
+set noprompt_after	# ask me for a command after the external pager exits
+set quote_regexp="^([A-Za-z ]+>|[]%>:|}-][]>:|}-]*)"
+set read_inc=25			# show progress when reading a mailbox
+set recall=ask-yes			# prompt to recall postponed messages
+set record="{{ mg_record }}"		# default location to save outgoing mail
+set reply_to			# always use reply-to if present
+# how to identify replies in the subject:
+set reply_regexp="^((\ [Rr][Eeé][ | ]?:|\
+[Rr][Ee] |\
+Re\\[[0-9]+\\]:|\
+Re\\([0-9]+\\):|\
+Re\\^[0-9]+:|\
+AW:|\
+SV:|\
+Ad:|\
+Odp:|\
+Obj\\.? ?:|\
+Re&nbsp;:|\
+Antw(ort)?:|\
+R[eé]f\\. :|\
+Rép\\. :|\
+R[eé]p\\.?:|\
+F[Ww][Dd]? ?:|\
+T[Rr] ?:|\
+Trans\\. :\
+)[ \t| ]*)+"
+#set resolve		# move to the next message when an action is performed
+set reverse_alias		# attempt to look up my names for people
+set reverse_name		# use my address as it appears in the message i am replying to
+set reverse_realname
+set nosave_empty		# remove files when no messages are left
+#set save_name			# save outgoing messages by recipient, if the
+#set sendmail="/usr/lib/sendmail -oi -oem"	# how to deliver mail
+set sendmail="/usr/bin/msmtp"
+#set shell="/bin/zsh"		# program to use for shell escapes
+set signature="~/.signature"	# file which contains my signature
+
+set sort=date # primary sorting method
+
+set sort_aux=date-received	# how to sort subthreads
+#set sort_aux=last-date		# date of the last message in thread
+set sort_browser=unsorted	# how to sort files in the dir browser
+set spoolfile="{{ mg_spoolfile }}"	# where my new mail is located
+#set status_chars = " *%A"
+#set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_format="In:%f [Msgs:%?M?%M/?%m%?n? New:%n?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?  %l]---(%s)-%>-(%P)---"
+#set status_on_top		# some people prefer the status bar on top
+#set strict_threads		# don't thread by subject
+set tilde			# virtual lines to pad blank lines in the pager
+#set timeout=0			# timeout for prompt in the index menu
+set tmpdir="/tmp"		# where to store temp files
+#set to_chars=" +TCF"
+#set use_8bitmime		# enable the -B8BITMIME sendmail flag
+set nouse_domain		# don't qualify local addresses with $domain
+#set use_from			# always generate the `From:' header field
+set implicit_autoview=no	# if yes, pager will show parts having a mailcap viewer
+set visual=vim			# editor invoked by ~v in the builtin editor
+#set nowait_key			# prompt when a pipe returns normal status
+set write_inc=25		# show progress while writing mailboxes
+
+# only enable the following IFF you have sendmail 8.8.x or you will not
+# be able to send mail!!!
+set dsn_notify='failure,delay'	# when to return an error message
+set dsn_return=hdrs		# what to return in the error message
+
+set header_cache="/tmp/mutt_headers/" # cache database path for mail headers
+set ts_enabled			# set terminal status line and icon name
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#  Pgp settings
+set pgp_strict_enc		# use Q-P encoding when needed for PGP
+set pgp_verify_sig=ask-yes	# ask to verify message signatures
+set pgp_entry_format="%4n %t%f %4l/0x%k %-4a %2c %u"
+set pgp_use_gpg_agent
+set pgp_replyencrypt
+set pgp_sign_as="0xE0399C72"
+set pgp_timeout=1800
+set pgp_sort_keys=address
+set pgp_decode_command="/usr/bin/gpg %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+set pgp_verify_command="/usr/bin/gpg --no-verbose --quiet --batch --output - --verify %s %f"
+set pgp_decrypt_command="/usr/bin/gpg --passphrase-fd 0 --no-verbose --quiet --batch --output - %f"
+set pgp_clearsign_command="/usr/bin/gpg --no-verbose --batch --quiet --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_sign_command="/usr/bin/gpg --no-verbose --batch --quiet --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_encrypt_sign_command="pgpewrap /usr/bin/gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_only_command="pgpewrap /usr/bin/gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_import_command="/usr/bin/gpg --no-verbose --import -v %f"
+set pgp_export_command="/usr/bin/gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="/usr/bin/gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_secring_command="/usr/bin/gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+set pgp_list_pubring_command="/usr/bin/gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+set pgp_good_sign = "^gpg: Good signature from"
+set pgp_autoencrypt=no
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# SSL hardening
+set ssl_force_tls="{{ mg_ssl_force_tls }}"
+set ssl_starttls=yes
+set ssl_use_sslv2=no
+set ssl_use_sslv3=no
+set ssl_use_tlsv1=no
+set ssl_use_tlsv1_1=no
+set ssl_use_tlsv1_2=yes
+set ssl_verify_dates=yes
+set ssl_verify_host=yes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# Header fields I don't normally want to see
+#
+ignore *		# this means "ignore all lines by default"
+
+## I do want to see these fields, though!
+#
+
+unignore From: Date: To: CC: BCC: Subject: Reply-To: Content-Type: \
+Organization: X-Organization: X-Operating-System: X-Mailer: User-Agent: \
+X-Disclaimer: X-Editor: X-Face: X-Spam-Status: X-Spam-Level: Message-ID: \
+X-Url Mail-Followup-To:
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# Key bindings
+#
+#	maps:
+#		alias		alias menu
+#		attach		attachment menu
+#		browser		directory browser
+#		compose		compose menu
+#		index		message index
+#		pgp		pgp menu
+#		postpone	postponed message recall menu
+#		generic		generic keymap for all of the above
+#		editor		line editor
+#		pager		text viewer
+#
+
+## Index
+# vi-like movements
+bind index gg	first-entry
+bind index G	last-entry
+bind index <space> collapse-thread
+# rebinding those because gg overlaps group-reply
+bind index R	group-reply
+bind index p	recall-message
+
+# move a message to a maildir
+macro index M "<save-message>?<toggle-mailboxes>" "move message to a maildir"
+
+# simulate the old browse-url function
+macro index \cb "<pipe-message> urlview<Enter>"
+
+# save message to ~
+macro index \es "<pipe-message>cat > ~/" "save message as"
+
+# Mark all New and Old message as read
+macro index A "<tag-pattern>~U<enter>\
+<tag-prefix><clear-flag>N\
+<tag-prefix><clear-flag>O\
+<untag-pattern>~T<enter>" \
+"Mark all as read"
+
+# imitate the old search-body function
+macro index \eb '/~b ' 'search in message bodies'
+
+# use Tab and Esc-Tab to move from an Old message to a New or Old one
+# instead than from New to New
+bind index \t	next-unread
+bind index \e\t	    previous-unread
+
+# simulate the old url menu
+macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+## Compose
+
+# Aspell macros
+macro compose i ":set ispell='/usr/bin/aspell -d it -x check'\n;<ispell>"
+macro compose I ":set ispell='/usr/bin/aspell -d en -x check'\n;<ispell>"
+
+## Pager
+
+# use Tab and Esc-Tab to move from an Old message to a New or Old one
+# instead than from New to New
+bind pager \t	next-unread
+bind pager \e\t	    previous-unread
+
+# simulate the old url menu
+macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# Specify the order of the headers to appear when displaying a message
+#
+#	hdr_order <hdr1> [ <hdr2> ... ]
+#
+
+unhdr_order *				# forget the previous settings
+hdr_order date from subject to cc bcc
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# Automatically use entries from ~/.mailcap to view these MIME types
+#
+#	auto_view <type> [ <type> ... ]
+
+auto_view text/html
+# multipart html/text messages
+alternative_order text/plain text/html
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Loading hooks file
+source ~/.mutt/hooks
+# Source list of mailboxes
+source ~/.mutt/mailboxes
+# load the aliases
+source ~/.mail_aliases
+# My color theme of choice
+source ~/.mutt/driftavalii-colors.muttrc
+
+# EOF
