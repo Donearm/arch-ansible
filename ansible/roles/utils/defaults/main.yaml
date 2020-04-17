@@ -25,4 +25,5 @@ utils_packages:
   - rsync
   - scrot
   - usbutils
+  - vi
   - xbindkeys
