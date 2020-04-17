@@ -46,6 +46,8 @@
       tags: [kitty]
     - role: imv
       tags: [imv]
+    - role: mpd
+      tags: [mpd]
     - role: xutils
       tags: [xutils]
 

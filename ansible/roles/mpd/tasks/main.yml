@@ -1,0 +1,12 @@
+- name: Install MPD
+  pacman:
+    name: "mpd"
+
+- name: Copy MPD configuration
+  template:
+    src: mpd.conf.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.config/mpd/mpd.conf"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"
