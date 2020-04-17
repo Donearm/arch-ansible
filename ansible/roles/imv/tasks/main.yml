@@ -1,0 +1,12 @@
+- name: Install Imv
+  pacman:
+    name: "imv"
+
+- name: Copy Imv keybindings and config
+  template:
+    src: imv_config.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.imv_config"
+    owner: "{{ item }}"
+    mode: 0600
+    with_items:
+      - "{{ global_admins }}"
