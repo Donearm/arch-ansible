@@ -48,6 +48,8 @@
       tags: [imv]
     - role: mpd
       tags: [mpd]
+    - role: ncmpcpp
+      tags: [ncmpcpp]
     - role: xutils
       tags: [xutils]
 

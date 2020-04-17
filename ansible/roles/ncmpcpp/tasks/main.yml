@@ -1,0 +1,21 @@
+- name: Install ncmpcpp
+  pacman:
+    name: "ncmpcpp"
+
+- name: Copy ncmpcpp configuration
+  template:
+    src: config.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.ncmpcpp/config"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"
+
+- name: Copy ncmpcpp keybindings
+  template:
+    src: bindings.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.ncmpcpp/bindings"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"
