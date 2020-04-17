@@ -17,6 +17,7 @@ utils_packages:
   - man-db
   - man-pages
   - mpc
+  - mpdscribble
   - net-tools
   - ntfs-3g
   - p7zip
