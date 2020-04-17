@@ -21,6 +21,7 @@ utils_packages:
   - net-tools
   - ntfs-3g
   - p7zip
+  - ranger-git
   - rsync
   - scrot
   - usbutils
