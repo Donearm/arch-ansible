@@ -1,0 +1,12 @@
+- name: Install tmux
+  pacman:
+    name: "tmux"
+
+- name: Copy tmux configuration
+  template:
+    src: tmux.conf.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.tmux.conf"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"

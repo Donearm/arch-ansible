@@ -44,6 +44,8 @@
       tags: [utils]
     - role: kitty
       tags: [kitty]
+    - role: tmux
+      tags: [tmux]
     - role: imv
       tags: [imv]
     - role: physlock
