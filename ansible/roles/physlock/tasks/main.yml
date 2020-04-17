@@ -1,0 +1,10 @@
+- name: Install physlock
+  pacman:
+    name: "physlock"
+
+- name: Copy PAM configuration needed for physlock
+  template:
+    src: physlock.j2
+    dest: "{{ global_mount_point }}/etc/pam.d/physlock"
+    owner: root
+    mode: 0644

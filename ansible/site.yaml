@@ -46,6 +46,8 @@
       tags: [kitty]
     - role: imv
       tags: [imv]
+    - role: physlock
+      tags: [physlock]
     - role: mpd
       tags: [mpd]
     - role: ncmpcpp
