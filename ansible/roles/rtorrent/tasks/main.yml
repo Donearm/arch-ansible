@@ -1,0 +1,12 @@
+- name: Install rTorrent
+  pacman:
+    name: "rtorrent"
+
+- name: Copy rTorrent configuration
+  template:
+    src: rtorrent.rc.j2
+    dest: "{{ global_mount_point }}/home/{{ item }}/.rtorrent.rc"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"

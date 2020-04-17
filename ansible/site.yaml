@@ -52,6 +52,8 @@
       tags: [mpd]
     - role: ncmpcpp
       tags: [ncmpcpp]
+    - role: rtorrent
+      tags: [rtorrent]
     - role: xutils
       tags: [xutils]
 
