@@ -8,3 +8,10 @@
     dest: "{{ global_mount_point }}/home/{{ mg_user }}/.muttrc"
     owner: "{{ mg_user }}"
     mode: 0600
+
+- name: Copy mailcap file
+  template:
+    src: mailcap.j2
+    dest: "{{ global_mount_point }}/home/{{ mg_user }}/.mailcap"
+    owner: "{{ mg_user }}"
+    mode: 0644
