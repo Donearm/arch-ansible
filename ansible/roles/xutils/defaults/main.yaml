@@ -1,4 +1,5 @@
 xutils_packages:       
+  - awesome
   - calibre
   - dropbox
   - firefox
@@ -6,3 +7,4 @@ xutils_packages:
   - gpick
   - gvim
   - spotify
+  - vicious
