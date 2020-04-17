@@ -1,0 +1,12 @@
+- name: Install Kitty
+  pacman:
+    name: "kitty"
+
+- name: Copy Kitty's configuration
+  template:
+    src: kitty.conf.j2
+    dest: "{ global_mount_point }}/home/{{ item }}/.config/kitty/kitty.conf"
+    owner: "{{ item }}"
+    mode: 0644
+    with_items:
+      - "{{ global_admins }}"
