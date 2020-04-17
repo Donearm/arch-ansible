@@ -7,6 +7,6 @@
     src: imv_config.j2
     dest: "{{ global_mount_point }}/home/{{ item }}/.imv_config"
     owner: "{{ item }}"
-    mode: 0600
+    mode: 0644
     with_items:
       - "{{ global_admins }}"
