@@ -42,6 +42,10 @@
       tags: [ttf_fonts]
     - role: utils
       tags: [utils]
+    - role: kitty
+      tags: [kitty]
+    - role: imv
+      tags: [imv]
     - role: xutils
       tags: [xutils]
 
