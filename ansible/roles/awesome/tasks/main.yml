@@ -1,0 +1,15 @@
+- name: Install Awesome and necessary dependencies
+  pacman:
+    name: "awesome"
+    name: "vicious"
+
+
+- name: Copy Awesome's xinitrc to user home
+  become: yes
+  become_user: "{{ item }}"
+  copy:
+    src: xinitrc
+    dest: "{{ users_created | user_home(item) }}/.xinitrc"
+  loop: "{{ global_admins }}"
+  owner: "{{ item }}"
+  mode: 0644

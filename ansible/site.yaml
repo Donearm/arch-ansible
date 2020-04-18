@@ -56,6 +56,8 @@
       tags: [ncmpcpp]
     - role: rtorrent
       tags: [rtorrent]
+    - role: awesome
+      tags: [awesome]
     - role: xutils
       tags: [xutils]
 
