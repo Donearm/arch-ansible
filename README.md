@@ -13,15 +13,11 @@ The playbook has been tested using Ansible 2.7 and higher.
 ## Installed system
 
 Unless some steps are skipped or customized, the installed system will
-run XFCE with the Numix theme. No greeter is installed by default: each
-user's `.xinitrc` is configured to launch XFCE when calling `startx`.
+run AwesomeWM. No greeter is installed by default: each user's
+`.xinitrc` is configured to launch AwesomeWM when calling `startx`.
 
-The `xfce4-screensaver` package is ditched in favor of `xscreensaver`. By
-default, systems installed in VM's will have it disabled, since I would
-assume that the host already has a screensaver/lock. Bare metal
-installations, conversely, have it enabled by default to power off the screen
-after a few minutes. It is possible to override this behaviour: see the
-`xscreensaver` role section.
+The `physlock` package is installed by default to provide a lightweight
+lock screen for privacy and added security.
 
 A bunch of default utilities like a PDF reader or gvim a preinstalled.
 These are handled by the `utils` and `xutils` roles.
@@ -32,8 +28,8 @@ this repository to show its structure and allow modification. In real
 scenarios, people should customize it and then encrypt it with
 ansible-vault before committing to a VCS.
 
-Currently only single-partition MBR installations are supported, using
-Syslinux as the bootloader. Swap space is not configured.
+Currently only GPT installations are supported, using refind-efi as the
+bootloader. Swap space is not configured.
 
 There is support for installing hypervisor guest additions as part of
 the process.  This can be disabled by skipping the `virtguest` tag.  As
@@ -100,12 +96,18 @@ environment and applying default customizations to users. These steps
 can be skipped or selected one by one using tags:
 
 * `virtguest` install hypervisor guest additions;
-* `xfce` installs the XFCE DE plus some theme customizations for all
-  non-root users;
+* `awesome` installs the AwesomeWM for all non-root users;
 * `yay` copies `yay` settings to each user home folder;
 * `ttf_fonts` installs additional fonts;
 * `utils` installs some non-X utilities, listed in
   `roles/utils/defaults/main.yaml`;
+* `kitty` installs the default terminal emulator, kitty-terminal;
+* `tmux` installs the terminal multiplexer tmux;
+* `imv` installs the default image viewer, the simple, X11/Wayalnd
+  supporting imv;
+* `mpd` install the MPD music player daemon, with `ncmpcpp` as its
+  client;
+* `rtorrent` installs rTorrent, a ncurses bittorrent client;
 * `xutils` installs some X utilities, listed in
   `roles/xutils/defaults/main.yaml`.
 
@@ -151,14 +153,17 @@ The file `group_vars/all/00-default.yaml` contains global configuration
 options that affect how the playbook work.
 
     global_device_node: /dev/sda
-    global_partition_number: 1
-    global_mount_point: /mnt
+    global_device_efi_number: 1 
+    global_partition_number: 1 
+    global_efi_mount_point: /boot 
+    global_mount_point: /mnt 
 
 These options define the disk that will be used for partitioning during
-the bootstrap phase, the index of the root partition, and the place
-where the partition is going to be mounted. If partitioning is skipped,
-`global_mount_point` is still relevant because the user must manually
-mount volumes there.
+the bootstrap phase, the device number of the EFI partition to create,
+the index of the root partition, the EFI partition mount point and the
+place where the root partition is going to be mounted. If partitioning
+is skipped, `global_mount_point` is still relevant because the user must
+manually mount volumes there.
 
     global_admins:
       - manu
@@ -238,9 +243,9 @@ URL from which AUR packages are downloaded.
 #### roles/ttf_fonts/defaults/main.yaml
 
     ttf_fonts_packages:
-      - ttf-bitstream-vera
       - ttf-dejavu
-      - ...
+      - ttf-ubuntu-font-family
+      - ttf-iosevka
 
 Packages installed by the `ttf_fonts` role.
 
@@ -249,10 +254,8 @@ Packages installed by the `ttf_fonts` role.
     users_info:
       root:
         password: "..."
-      manu:
-        password: "..."
-        is_admin: true   # Optional item, true if missing
-        groups:   []     # Optional item, empty list if missing
+      manu: password: "..." is_admin: true   # Optional item, true if missing
+      groups:   [video, docker, adbusers] # Optional item, empty list if missing
 
 Settings for new users created on the target system. This should contain
 passwords for all users defined in `global_admins`. Users that have
@@ -266,6 +269,8 @@ For `root`, only `password` is considered.
 #### roles/utils/defaults/main.yaml
 
     utils_packages:
+      - docker-compose
+      - go
       - ntfs-3g
       - p7zip
       - ...
@@ -341,8 +346,9 @@ Packages installed by the `xorg` role. These are pulled as dependencies by
 #### roles/xutils/defaults/main.yaml
 
     xutils_packages:
-      - gvfs
-      - udisks2
+      - calibre
+      - dropbox
+      - firefox
       - ...
 
 Packages installed by the `xutils` role.
