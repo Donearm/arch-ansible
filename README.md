@@ -28,7 +28,7 @@ this repository to show its structure and allow modification. In real
 scenarios, people should customize it and then encrypt it with
 ansible-vault before committing to a VCS.
 
-Currently only GPT installations are supported, using refind-efi as the
+Currently only GPT installations are supported, using `refind` as the
 bootloader. Swap space is not configured.
 
 There is support for installing hypervisor guest additions as part of
